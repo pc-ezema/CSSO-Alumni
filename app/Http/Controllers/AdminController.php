@@ -253,7 +253,7 @@ class AdminController extends Controller
 
         $message = new Notification();
         $message->from = 'Admin';
-        $message->to = $member->email;
+        $message->to = $member->membership_id;
         $message->subject = request()->subject;
         $message->message = request()->message;
         $message->save();

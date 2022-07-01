@@ -8,27 +8,21 @@
             <div class="carousel-item active banner-one">
                 <div class="banner-note text-center">
                     <p>
-                        <b>
-                            To promote cooperation, interaction and beneficial relationship among members and also to raise requisite funds for meeting the associations projects and commitments.
-                        </b>
+                        To promote cooperation, interaction and beneficial relationship among members and also to raise requisite funds for meeting the associations projects and commitments.
                     </p>
                 </div>
             </div>
             <div class="carousel-item banner-two">
                 <div class="banner-note text-center">
                     <p>
-                        <b>
-                            Bringing together/reuniting the alumni of our alma mater globally to come together and positively impact value to the world at large.
-                        </b>
+                        Bringing together/reuniting the alumni of our alma mater globally to come together and positively impact value to the world at large.
                     </p>
                 </div>
             </div>
             <div class="carousel-item banner-three">
                 <div class="banner-note text-center">
                     <p>
-                        <b>
-                            To promote the social health of the association through occasional lawful informal and/or recreational activities as shall be approved from time to time.
-                        </b>
+                        To promote the social health of the association through occasional lawful informal and/or recreational activities as shall be approved from time to time.
                     </p>
                 </div>
             </div>
@@ -93,7 +87,7 @@
                 <div class="counter-div text-center">
                     <img src="{{URL::asset('assets/images/years.png')}}" style="width:50px ;" draggable="false">
                     <h4><span class="counter">20</span><span>+</span></h4>
-                    <p class="years">Years in Existence</p>
+                    <p class="years">Years</p>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -171,9 +165,9 @@
                     <h1>
                         Our Goals
                     </h1>
-                    <div class="amet">
+                    <!-- <div class="amet">
                         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim vel.
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-lg-3"></div>

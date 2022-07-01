@@ -19,6 +19,7 @@
                     <div class="user-welcome d-block d-xl-flex flex-nowrap align-items-center">
                         <div class="page-title mb-2 mb-xl-0">
                             <h1 class="mb-1">{{$greetings}}, {{Auth::user()->surname}} {{Auth::user()->first_name}} {{Auth::user()->second_name}}!</h1>
+                            <h2 class="mb-1">{{Auth::user()->membership_id}}</h2>
                             <p>You have <span style="color: #264774">8</span> messages and notifications to respond.</p>
                         </div>
                     </div>

@@ -28,7 +28,9 @@
                     <div class="col-lg-6">
                         <div class="sign">
                             <h4>
-                                <img src="{{URL::asset('assets/images/image 1.png')}}" draggable="false" alt="">Admin Login
+                                <a href="/">
+                                    <img src="{{URL::asset('assets/images/image 1.png')}}" draggable="false" alt="">Admin Login
+                                </a>
                             </h4>
                             <div class="line-rule">
                             @includeIf('layouts.error_template')
