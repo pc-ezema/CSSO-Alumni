@@ -14,13 +14,13 @@
         <div class="container-fluid">
             <!-- begin row -->
             <div class="row">
-                <div class="col-md-12 m-b-30">
+                <div class="col-12 m-b-30">
                     <!-- begin page title -->
-                    <div class="user-welcome d-block d-xl-flex flex-nowrap align-items-center">
+                    <div class="user-welcome d-block  flex-nowrap align-items-center">
                         <div class="page-title mb-2 mb-xl-0">
-                            <h1 class="mb-1">{{$greetings}}, {{Auth::user()->surname}} {{Auth::user()->first_name}} {{Auth::user()->second_name}}!</h1>
-                            <h2 class="mb-1">{{Auth::user()->membership_id}}</h2>
-                            <p>You have <span style="color: #264774">8</span> messages and notifications to respond.</p>
+                            <h1 class="mb-1">{{$greetings}}, {{Auth::user()->surname}} {{Auth::user()->first_name}} {{Auth::user()->second_name}}!
+                            <span class="float-right">{{Auth::user()->membership_id}}</span></h1>
+                            <p>You have <span style="color: #264774">{{$self_notifications->count()}}</span> messages and notifications to respond.</p>
                         </div>
                     </div>
                 </div>
@@ -33,10 +33,10 @@
                     <div class="color">
                         <div class="text">
                             <h2>
-                                1
+                                {{$total_notifications->count()}}
                             </h2>
                             <h1>
-                                Members
+                                Total Notifications
                             </h1>
                         </div>
                     </div>

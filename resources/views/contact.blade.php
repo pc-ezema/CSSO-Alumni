@@ -93,10 +93,10 @@
                             Phone Number
                         </h4>
                         <div>
-                            +234 8033777527
+                            +234 8130000309
                         </div>
                         <div>
-                            +234 8094332828
+                            +234 8033796762
                         </div>
                     </div>
                     <div class="baby">
@@ -105,7 +105,7 @@
                             Email Address
                         </h4>
                         <div>
-                            cssialumni@gmail.com
+                            info@cssoalumni.org
                         </div>
                         <div>
                             info@cssialumni.com

@@ -35,7 +35,7 @@
                 </div>
                 <div class="diet">
                     <h4>
-                        Col. Samuel Chukwuemeka Agbanusi
+                        Col. Samuel Chukwuemeka Agbanusi (Rtd)
                     </h4>
                     <div>
                         Chairman

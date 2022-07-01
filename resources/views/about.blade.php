@@ -25,10 +25,10 @@
                         ABOUT US
                     </h6>
                     <h1>
-                        ABOUT C.C.S.O ALUMIN
+                        ABOUT C.S.S.O ALUMNI
                     </h1>
                     <div class="text">
-                        We, the members of CSS OBOSI ALUMNI ASSOCIATION a not for-profit and non-political organisation do firmly and solemnly resolve to provide for ourselves a constitution and to be governed by the provisions therein contained.
+                        We, the members of CSSO ALUMNI ASSOCIATION a not for-profit and non-political organisation do firmly and solemnly resolve to provide for ourselves a constitution and to be governed by the provisions therein contained.
 
                     </div>
                     <div class="link">

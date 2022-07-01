@@ -87,7 +87,7 @@
                 <div class="counter-div text-center">
                     <img src="{{URL::asset('assets/images/years.png')}}" style="width:50px ;" draggable="false">
                     <h4><span class="counter">20</span><span>+</span></h4>
-                    <p class="years">Years</p>
+                    <p>Years</p>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -157,19 +157,6 @@
 <section class="goal">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="text-center">
-                    <h6>
-                        AIM
-                    </h6>
-                    <h1>
-                        Our Goals
-                    </h1>
-                    <!-- <div class="amet">
-                        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim vel.
-                    </div> -->
-                </div>
-            </div>
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
                 <div class="background">

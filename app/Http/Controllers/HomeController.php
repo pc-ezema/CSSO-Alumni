@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\DonationDue;
 use App\Models\Payment;
+use App\Models\Notification;
 
 class HomeController extends Controller
 {
@@ -58,9 +59,10 @@ class HomeController extends Controller
         }
         
         $donation_dues = DonationDue::get();
-        $payment_histories = Payment::latest()->take(5)->get();
-
-        return view('member.home', compact('greetings', 'donation_dues', 'payment_histories'));
+        $payment_histories = Payment::latest()->where('membership_id', Auth::user()->membership_id)->take(5)->get();
+        $self_notifications = Notification::latest()->where('to', Auth::user()->membership_id)->get();
+        $total_notifications = Notification::latest()->where('to', Auth::user()->membership_id)->where('to', 'Members')->get();
+        return view('member.home', compact('greetings', 'donation_dues', 'payment_histories', 'self_notifications', 'total_notifications'));
     }
 
     public function profile()
