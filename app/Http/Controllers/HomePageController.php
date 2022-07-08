@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use App\Models\MembershipRequest;
 use Illuminate\Support\Facades\Crypt;
@@ -105,9 +106,11 @@ class HomePageController extends Controller
         }
     }
 
-    public function download_constitution() {
+    public function download_constitution() 
+    {   
+        $documentFinder = public_path('/Constitution - CSS OBOSI ALUMNI ASSOCIATION.pdf');
 
-        return Storage::download('/public/guarantor_valid_id/'.$documentFinder);
+        return Response::download($documentFinder);
     }
 
     public function membership_eligibility(Request $request)

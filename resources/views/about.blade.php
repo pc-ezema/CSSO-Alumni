@@ -130,7 +130,7 @@
                         CSS Obosi Alumni Constitution
                     </h3>
                     <button>
-                        <a href="Constitution - CSS OBOSI ALUMNI ASSOCIATION.pdf" download="">
+                        <a href="/download/constitution">
                             Click here to download
                         </a>
                     </button>
