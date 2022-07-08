@@ -11,7 +11,7 @@
         <!-- bootstrap-icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <!-- app favicon -->
-        <link rel="shortcut icon" href="{{URL::asset('dash/assets/img/image 1.png')}}">
+        <link rel="icon" href="{{URL::asset('assets/images/image 1.png')}}">
         <!-- google fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
         <!-- plugin stylesheets -->
@@ -69,5 +69,7 @@
         <!-- custom app -->
         <script src="{{URL::asset('dash/assets/js/app.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script src="{{URL::asset('dash/assets/vendor_components/datatable/datatables.min.js')}}"></script>
+        <script src="{{URL::asset('dash/js/js/pages/data-table.js')}}"></script>
     </body>
 </html>

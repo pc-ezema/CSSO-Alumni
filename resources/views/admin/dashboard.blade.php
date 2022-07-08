@@ -109,7 +109,7 @@
                                 @else
                                 @foreach($donation_dues as $donation_due)
                                 <div class="row active-task m-b-20">
-                                    <div class="col-9">
+                                    <div class="col-12">
                                         <small style="color: #264774" class="d-block mb-1">₦{{number_format($donation_due->amount, 2)}}</small>
                                         <h5 class="mb-0"><a href="#">{{$donation_due->title}}</a></h5>
                                         <ul class="list-unstyled list-inline">

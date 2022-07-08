@@ -32,6 +32,9 @@
                 </ul>
             </li>
             <li>
+                <a href="{{route('admin.view.membership.requests')}}" aria-expanded="false"> <i class="nav-icon ti ti-layout "></i> <span class="nav-title">Membership Requests</span> </a>
+            </li>
+            <li>
                 <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
                     <i class="nav-icon fe fe-mail"></i>
                     <span class="nav-title">
@@ -52,7 +55,7 @@
                 </ul>
             </li>
             <li>
-                <a class="has-arrow" href="javascript:void(0)"      aria-expanded="false">
+                <a class="has-arrow" href="javascript:void(0)"  aria-expanded="false">
                     <i class="nav-icon ti ti-briefcase "></i>
                     <span class="nav-title">
                         Payment

@@ -48,13 +48,28 @@
                                             <div class="profile-img text-center rounded-circle">
                                                 <div class="pt-5">
                                                     <div class="bg-img m-auto">
-                                                        <img src="{{URL::asset('dash/assets/img/avtar/avatar.jpg')}}" class="img-fluid" alt="users-avatar">
+                                                        @if(Auth::user()->avatar)
+                                                        <img class="img-fluid border-primary" style="height: 100px;"src="/storage/avatars/{{Auth::user()->avatar}}" alt="Profile Picture">
+                                                        @else
+                                                        <img src="{{URL::asset('dash/assets/img/avtar/avatar.png')}}" class="img-fluid" alt="users-avatar">
+                                                        @endif
                                                     </div>
                                                     <div class="profile pt-4">
                                                         <h4 class="mb-1">{{Auth::user()->first_name}} {{Auth::user()->second_name}}</h4>
                                                         <p>{{Auth::user()->email}}</p>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="profile-btn text-center mt-5 p-4">
+                                                <form method="POST" action="{{ route('upload-avatar', Crypt::encrypt(Auth::user()->id)) }}" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-12">
+                                                            <input type="file" class="form-control" required name="avatar"/>
+                                                        </div>
+                                                    </div>
+                                                    <div><button class="btn btn-primary" type="submit">Upload New Profile Picture</button></div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

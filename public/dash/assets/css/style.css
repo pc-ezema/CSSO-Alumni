@@ -8325,7 +8325,7 @@ button.bg-dark:hover {
 }
 .p-4 {
     padding: 1.5rem !important;
-    background-color: #E5E5E5;
+    /* background-color: #E5E5E5; */
 }
 .pt-4,
 .py-4 {
@@ -16282,7 +16282,7 @@ h6 {
     line-height: 1.22rem;
 }
 p {
-    color: #a6a9b7;
+    color: #000;
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.714rem;
@@ -32147,7 +32147,7 @@ input[readonly] {
 .form-control {
     height: 40px;
     border: 1px solid #dee2e6;
-    color: #a6a9b7;
+    /* color: #a6a9b7; */
 }
 .form-control:focus {
     border-color: #264774;
@@ -32181,7 +32181,7 @@ select.form-control[size] {
 label,
 legend {
     font-weight: 500;
-    color: #a6a9b7;
+    color: #000;
 }
 .custom-select.is-valid,
 .form-control.is-valid {

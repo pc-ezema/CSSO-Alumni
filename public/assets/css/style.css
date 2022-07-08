@@ -158,13 +158,12 @@ header .navbar .signin:hover{
     background-image: url('../images/slidder.jpg');  
 }
 .welcome-screen .carousel-item{
-
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
-    padding: 250px 10px 200px 10px;
+    padding: 150px 10px 150px 10px;
     color: #fff;
-    box-shadow:inset 0 0 0 1000px rgba(0, 0, 0, 0.542);
+    /* box-shadow:inset 0 0 0 1000px rgba(0, 0, 0, 0.542); */
 }
 .welcome-screen .carousel-item .banner-note{
     width: 50%;
@@ -298,7 +297,7 @@ header .navbar .signin:hover{
     color: #FFFFFF;
 }
 .idea .years{
-    /* padding: 0px 0px 0px 120px; */
+    padding: 0px 0px 0px 0px;
 }
 @media (max-width:1400px) {
     .idea .counter-div img{
@@ -515,14 +514,15 @@ header .navbar .signin:hover{
 }
 .executive .image-div{
     margin-top: 30px;
-    padding: 20px 0px 20px 0px;
+    padding: 0px 0px 0px 0px;
     background-color: #D9D9D9;
     border-radius: 10px 10px 0px 0px;
 }
 .executive .image-div img{
-    width: 180px;
+    width: 100%;
     margin: auto;
     display: block;
+    border-radius: 10px 10px 0px 0px;
 }
 .executive .diet{
     margin-top: 0px;
@@ -530,12 +530,28 @@ header .navbar .signin:hover{
     background-color: #1853B6;
     color: #fff;
 }
-.executive .diet h4{
+.trusted .len{
+    border: none!important; 
+    width: 100% !important;
+    background-color:  #FDFEFF!important;
+    color: #000;
+} 
+.executive .len{
+    border: none!important; 
+    width: 100% !important;
+    background-color:  #FDFEFF!important;
+    color: #000;
+}
+.modal-body .layer li {
+    font-size: 13px !important;
+    line-height: 2;
+}
+.executive .diet  h4{
     text-align: center;
     font-size: 16px;
     font-weight: 500;
 }
-.executive .diet div{
+.executive .diet  div{
     text-align: center;
 }
 .executive .link{
@@ -779,7 +795,7 @@ header .navbar .signin:hover{
 .footer .text img{
     display: block;
     margin: auto;
-    width: 200px;
+    width: 130px;
 }
 .footer .text .line{
     height: 2px;
@@ -1395,19 +1411,20 @@ header .navbar .signin:hover{
     margin-top: 30px;
     padding: 20px 0px 20px 0px;
     background: #FDFEFF;
-    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.15);
     border-radius: 10px 10px 0px 0px;
 }
 .trusted .image-div img{
     width: 180px;
     margin: auto;
+    pointer-events: none;
     display: block;
 }
 .trusted .diet{
     margin-top: 0px;
     padding: 40px 0px 10px 0px;
     background: #FDFEFF;
-    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.15);
     color: #000;
 }
 .trusted .diet h4{
@@ -1724,6 +1741,16 @@ header .navbar .signin:hover{
 .Eligibility button:hover{
     background-color: #000;
 }
+.Eligibility .lenn{
+    border: none!important; 
+    background-color:  #1853B6!important;
+    color: #fff;
+}
+.Eligibility .lenn:hover{
+    border: none!important; 
+    background-color:  #000!important;
+    color: #fff;
+}
 .Eligibility button{
    border: none;
    position: relative;
@@ -1751,5 +1778,142 @@ hr {
     background: #333;
     background: linear-gradient(to right, #ccc, #333, #ccc);
 }
-
+.modal-body .login {
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(136, 136, 136, 0.219);
+    border-radius: 10px;
+    width: 100%;
+    padding: 30px 30px;
+    margin-top: 20px;
+}
+.logIn .sign h4{
+    font-size: 30px;
+    color: #1853B6;
+    font-weight: 600;
+}
+.modal-body .login ::placeholder{
+    font-size: 12px;
+}
+.modal-body .login label{
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 10px;
+}
+.modal-body .login .send{
+    width: 100%;
+    text-align: center;
+    background-color: #1853B6;
+    border-radius: 10px;
+    border: none;
+    padding: 15px 0px 15px 0px;
+}
+.modal-body .login .send:hover{
+    background-color: #000;
+}
+.modal-body .login .send a{
+    color: #fff;
+    text-decoration: none;
+}
+.modal-body .login input{
+    display: block;
+    width: 100%;
+    padding: 10px 5px 10px 40px;
+    border-radius: 10px;
+    border: 1px solid #D5D5FF;
+    letter-spacing: 0.8px;
+    background-color: #F9F9FF;
+    font-size: 16px;
+    transition: 0.6s;
+}
+.modal-body .login .bi{
+    position: absolute;
+    margin-top: 8px;
+    margin-left: 15px;
+    font-size: 19px;
+    padding-right: 15px;
+    padding-top: 2px;
+    color: #999797;
+}
 /*****Eligibility Ends******/
+
+/*****Modal******/
+.model img{
+    width: 60%;
+    display: block;
+    margin: auto;
+}
+.modell{
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 0px 0px 10px 10px;
+    border-bottom: 3px solid #0077B5;
+}
+.modell img{
+    width: 80%;
+    display: block;
+    margin: auto;
+}
+.model h1{
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    padding: 20px 0px 0px 0px;
+}
+.model p{
+    text-align: center;
+}
+.layer h2{
+    font-size: 15px;
+    color: #1853B6;
+    font-weight: 700;
+    text-align: left;
+}
+.layer p{
+    font-size: 14px;
+    line-height: 2;
+}
+@media (max-width:520px) {
+    .layer p{
+        line-height: 2;
+        font-size: 14px;
+    }
+    .modal-dialog {
+        padding: 120px 0 0 0;
+        max-width: 90% !important;
+        margin: auto !important;
+    }
+}
+.layer p{
+    line-height: 2;
+}
+.modal-title{
+    color: #1853B6;
+    font-weight: 700;
+}
+.modal-dialog {
+    padding: 120px 0 0 0;
+    max-width: 80% !important;
+    margin: auto !important;
+}
+.alert {
+    padding: 120px 0 0 0 !important;
+    width: 50% !important;
+    margin: auto !important;
+}
+/*****Modal Ends******/
+
+
+.application-alert-success {
+    background: green;
+    padding: 10px;
+    color: #fff;
+    margin-bottom: 3rem;
+}
+
+.application-alert-danger {
+    background:rgb(212, 0, 0);
+    padding: 10px;
+    color: #fff;
+}

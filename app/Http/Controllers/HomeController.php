@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Models\DonationDue;
 use App\Models\Payment;
 use App\Models\Notification;
@@ -61,8 +62,12 @@ class HomeController extends Controller
         $donation_dues = DonationDue::get();
         $payment_histories = Payment::latest()->where('membership_id', Auth::user()->membership_id)->take(5)->get();
         $self_notifications = Notification::latest()->where('to', Auth::user()->membership_id)->get();
-        $total_notifications = Notification::latest()->where('to', Auth::user()->membership_id)->where('to', 'Members')->get();
-        return view('member.home', compact('greetings', 'donation_dues', 'payment_histories', 'self_notifications', 'total_notifications'));
+        $general_notifications = Notification::latest()->where('to', 'Members')->get();
+        $generals = Notification::latest()->where('to', 'Members')->take(5)->get();
+        $self = Notification::latest()->where('to', Auth::user()->membership_id)->where('status', 'Unread')->get();
+
+        return view('member.home', compact('greetings', 'donation_dues', 'payment_histories', 
+                                'generals', 'self', 'self_notifications', 'general_notifications'));
     }
 
     public function profile()
@@ -296,5 +301,90 @@ class HomeController extends Controller
         return view('member.payment_history',[
             'payments' => $payments
         ]);
+    }
+
+    public function view_general_messages_notifications()
+    {
+        $notifications = Notification::latest()->where('to', 'Members')->get();
+
+        return view('member.general_notifications', [
+            'notifications' => $notifications
+        ]);
+    }
+
+    public function view_personal_messages_notifications()
+    {
+        $notifications = Notification::latest()->where('to', Auth::user()->membership_id)->get();
+
+        return view('member.personal_notifications', [
+            'notifications' => $notifications
+        ]);
+    }
+
+    public function update_password ($id, Request $request) 
+    {
+        $this->validate($request, [
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $userFinder = Crypt::decrypt($id);
+
+        $user = User::findorfail($userFinder);
+        
+        $user->password = Hash::make($request->new_password);
+
+        $user->save();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Password Updated Successfully!'
+        ]); 
+    }
+
+    public function upload_avatar($id, Request $request) {
+
+        //Validate Request
+        $this->validate($request, [
+            'avatar' => 'required|mimes:jpeg,png,jpg',
+        ]);
+
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        //Profile
+        $profile = User::find($userFinder);
+
+        //Validate User
+        if (request()->hasFile('avatar')) {
+            $filename = request()->avatar->getClientOriginalName();
+            if($profile->avatar) {
+                Storage::delete('/public/avatars/'. $profile->avatar);
+            }
+            request()->avatar->storeAs('avatars', $filename, 'public');
+            $profile->avatar = $filename;
+            $profile->save();
+            
+            return back()->with([
+                'type' => 'success',
+                'message' => 'Profile Picture Update Successfully!'
+            ]);
+        } else {
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Access denied!',
+            ]);
+        }
+    }
+
+    public function read_message($id) { 
+        $notification_id = Crypt::decrypt($id);
+
+        $notification = Notification::findorfail($notification_id);
+        
+        $notification->status = 'Read';
+        $notification->seen += 1;
+        $notification->save();
+
+        return back();
     }
 }

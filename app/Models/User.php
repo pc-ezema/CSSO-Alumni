@@ -28,6 +28,7 @@ class User extends Authenticatable
         'whatsapp_number',
         'email',
         'email_verified_at',
+        'avatar',
         'graduation_set_class',
         'state_of_origin',
         'occupation',

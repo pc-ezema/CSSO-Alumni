@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Payment;
 use App\Models\Notification;
+use App\Models\MembershipRequest;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -105,7 +106,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function update_member($id, Request $request) {
+    public function update_member($id, Request $request) 
+    {
         //Find User
         $userFinder = Crypt::decrypt($id);
 
@@ -156,7 +158,8 @@ class AdminController extends Controller
         }       
     }
 
-    public function delete_member($id) {
+    public function delete_member($id) 
+    {
         //Find User
         $userFinder = Crypt::decrypt($id);
   
@@ -266,7 +269,7 @@ class AdminController extends Controller
         
         /** Send message to the user */
         Mail::send('emails.notification', $data, function ($m) use ($data) {
-            $m->to($data['email'])->subject('C.S.S.O. Alumni');
+            $m->to($data['email'])->subject('C.S.S.O OBOSI ALUMNI ASSOCIATION');
         });
 
         return back()->with([
@@ -324,5 +327,83 @@ class AdminController extends Controller
         $payments = Payment::latest()->get();
 
         return view('admin.view_payments', compact('payments'));
+    }
+
+    public function view_membership_requests() 
+    {
+        $membership_requests = MembershipRequest::latest()->get();
+
+        return view('admin.view_membership_request', compact(('membership_requests')));
+    }
+
+    public function confirm_member($id, Request $request) 
+    {
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        $member_request = MembershipRequest::findorfail($userFinder);
+
+        $user = User::create([
+            'user_type' => 'Member',
+            'membership_id' => 'CSSO-'.$this->membership_id(4),
+            'title' => $member_request->title,
+            'surname' => $member_request->surname,
+            'first_name' => $member_request->first_name,
+            'second_name' => $member_request->second_name,
+            'phone_number' => $member_request->phone_number,
+            'whatsapp_number' => $member_request->whatsapp_number,
+            'email' => $member_request->email,
+            'graduation_set_class' => $member_request->graduation_set_class,
+            'state_of_origin' => $member_request->state_of_origin,
+            'occupation' => $member_request->occupation,
+            'password' => Hash::make('Password'),
+        ]);
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $member_request->title. ' ' .$member_request->surname. ' ' .$member_request->first_name. ' ' .$member_request->second_name,
+            'membership_id' => $user->membership_id,
+            'email' => $member_request->email
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.approve_membership_request', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject('C.S.S.O OBOSI ALUMNI ASSOCIATION');
+        });
+        
+
+        MembershipRequest::find($userFinder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Successfully Made a Member!'
+        ]);         
+    }
+
+    public function decline_member($id) 
+    {
+        //Find User
+        $userFinder = Crypt::decrypt($id);
+
+        $member_request = MembershipRequest::findorfail($userFinder);
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => $member_request->title. ' ' .$member_request->surname. ' ' .$member_request->first_name. ' ' .$member_request->second_name,
+            'email' => $member_request->email
+        );
+        
+        /** Send message to the user */
+        Mail::send('emails.decline_membership_request', $data, function ($m) use ($data) {
+            $m->to($data['email'])->subject('C.S.S.O OBOSI ALUMNI ASSOCIATION');
+        });
+        
+
+        MembershipRequest::find($userFinder)->delete();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Membership Request Declined Successfully!'
+        ]); 
     }
 }

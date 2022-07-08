@@ -6,9 +6,9 @@
         <!-- begin navbar-header -->
         <div class="navbar-header d-flex align-items-center">
             <a href="javascript:void:(0)" class="mobile-toggle"><i class="ti ti-align-right"></i></a>
-            <a class="navbar-brand" href="#">
-                <img src="{{URL::asset('dash/assets/img/image 1.png')}}" draggable="false" class="img-fluid logo-desktop" alt="logo" />
-                <img src="{{URL::asset('dash/assets/img/image 1.png')}}" draggable="false" class="img-fluid logo-mobile" alt="logo" />
+            <a class="navbar-brand" href="/">
+                <img src="{{URL::asset('assets/images/CSSO-logo.png')}}" draggable="false" class="img-fluid logo-desktop" alt="logo" />
+                <img src="{{URL::asset('assets/images/CSSO-logo..png')}}" draggable="false" class="img-fluid logo-mobile" alt="logo" />
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,11 @@
                     </li>
                     <li class="nav-item dropdown user-profile">
                         <a href="javascript:void(0)" class="nav-link dropdown-toggle " id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="{{URL::asset('dash/assets/img/avtar/avatar.png')}}" alt="avtar-img">
+                            @if(Auth::user()->avatar)
+                            <img src="/storage/avatars/{{Auth::user()->avatar}}" class="border-primary" alt="Profile Picture">
+                            @else
+                            <img src="{{URL::asset('dash/assets/img/avtar/avatar.png')}}" alt="users-avatar">
+                            @endif
                             <span class="bg-success user-status"></span>
                         </a>
                         <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">

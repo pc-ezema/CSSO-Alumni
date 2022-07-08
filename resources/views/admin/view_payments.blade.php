@@ -64,7 +64,7 @@
                                         @if($payments->isEmpty())
                                         <tbody>
                                             <tr>
-                                                <td class="align-enter text-dark font-15" colspan="6">No Payment.</td>
+                                                <td class="align-enter text-dark font-15" colspan="9">No Payment.</td>
                                             </tr>
                                         </tbody>
                                         @else

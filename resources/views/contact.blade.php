@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="col-lg-1"></div>
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <div class="property">
                     <div class="baby">
                         <img src="{{URL::asset('assets/images/phone.png')}}" draggable="false" alt="">
@@ -107,9 +107,6 @@
                         <div>
                             info@cssoalumni.org
                         </div>
-                        <div>
-                            info@cssialumni.com
-                        </div>
                     </div>
                     <div class="baby">
                         <img src="{{URL::asset('assets/images/location.png')}}" draggable="false" alt="">
@@ -117,10 +114,8 @@
                             Address
                         </h4>
                         <div>
-                            Ajoda New town Estate,
-                        </div>
-                        <div>
-                            Egbeda, Ibadan, Oyo State
+                            Mike Ajegbo Road,Obosi,
+                            Idemili North Local Government Area, Anambra State.
                         </div>
                     </div>
                 </div>

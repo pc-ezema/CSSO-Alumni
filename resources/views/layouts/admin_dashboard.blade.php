@@ -7,14 +7,14 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta name="description" content="Alumin Dashboard Admin" />
-        <meta name="author" content="Potenza Global Solutions" />
+        <meta name="author" content="Promise C. Ezema" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- fontawesome Icon -->
         <script src="https://kit.fontawesome.com/997b229808.js" crossorigin="anonymous"></script>
         <!-- bootstrap-icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <!-- app favicon -->
-        <link rel="shortcut icon" href="assets/img/image 1.png">
+        <link rel="icon" href="{{URL::asset('assets/images/image 1.png')}}">
         <!-- google fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
         <!-- plugin stylesheets -->

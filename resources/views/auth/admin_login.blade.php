@@ -17,7 +17,7 @@
                 $(".alert-timeout").fadeTo(500, 0).slideUp(1000, function(){
                     $(this).remove(); 
                 });
-            }, 2000);
+            }, 2500);
         </script>
     </head>
     <body id="back">

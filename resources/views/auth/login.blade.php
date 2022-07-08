@@ -17,7 +17,7 @@
                 $(".alert-timeout").fadeTo(500, 0).slideUp(1000, function(){
                     $(this).remove(); 
                 });
-            }, 2000);
+            }, 2500);
         </script>
     </head>
     <body id="back">
@@ -38,7 +38,7 @@
                             <form class="sign-div" method="POST" action="{{ route('member.login') }}">
                                 @csrf
                                 <div class="row">
-                                    <!--Email-->
+                                    <!--Membership ID-->
                                     <div class="col-lg-12">
                                         <label>Membership ID</label>
                                         <div class="row">
@@ -54,12 +54,27 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Password -->
+                                    <div class="col-lg-12">
+                                        <label>Password</label>
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <i class="bi bi-phone"></i>
+                                                <input type="password" placeholder="Enter Your Password" name="password" class="input @error('password') is-invalid @enderror" required>
+                                                @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-12 mb-3">
                                         <button type="submit">LogIn</button>
                                     </div>
                                 </div>
                             </form>
-                            <p class="fine">Dont have an account ? <a href="/contact">Contact Admin</a> </p>
+                            <p class="fine">Don't have a Membership ID ? <a href="/members">Request a Membership </a> </p>
                         </div>
                     </div>
                     <div class="col-lg-3"></div>

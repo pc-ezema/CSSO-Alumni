@@ -55,6 +55,7 @@
                                                 <th>Name</th>
                                                 <th>Phone Number</th>
                                                 <th>Email</th>
+                                                <th>Password</th>
                                                 <th>Date Joined</th>
                                                 <th>Action</th>
                                             </tr>
@@ -71,9 +72,10 @@
                                             <tr>
                                                 <td>{{$loop->iteration}}</td>
                                                 <td>{{$member->membership_id}}</td>
-                                                <td>{{$member->surname}}, {{$member->first_name}} {{$member->second_name}}</td>
+                                                <td>{{$member->title}} {{$member->surname}}, {{$member->first_name}} {{$member->second_name}}</td>
                                                 <td>{{$member->phone_number}}</td>
                                                 <td>{{$member->email}}</td>
+                                                <td>Password</td>
                                                 <td>{{$member->created_at}}</td>
                                                 <td>
                                                     <a data-toggle="modal" data-target="#send-message-{{$member->id}}" class="mr-2"><i class="fa fa-paper-plane-o" data-toggle="tooltip" data-placement="top" title="" data-original-title="Send Message"></i></a>
@@ -197,6 +199,8 @@
                                                 <th>Name</th>
                                                 <th>Phone Number</th>
                                                 <th>Email</th>
+                                                <th>Password</th>
+                                                <th>Date Joined</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>

@@ -19,6 +19,8 @@ Route::get('/about', [App\Http\Controllers\HomePageController::class, 'about']);
 Route::get('/contact', [App\Http\Controllers\HomePageController::class, 'contact']);
 Route::get('/leadership', [App\Http\Controllers\HomePageController::class, 'leadership']);
 Route::get('/members', [App\Http\Controllers\HomePageController::class, 'members']);
+Route::get('/download/constitution', [App\Http\Controllers\HomePageController::class, 'download_constitution']);
+Route::post('/membership/eligibility', [App\Http\Controllers\HomePageController::class, 'membership_eligibility'])->name('membership.eligibility');
 
 
 // Member
@@ -30,8 +32,12 @@ Route::post('/member/make/payment/{id}', [App\Http\Controllers\HomeController::c
 Route::get('/member/payment/callback', [App\Http\Controllers\HomeController::class, 'handleGatewayCallback'])->name('handleGatewayCallback');
 Route::get('/member/payment/history', [App\Http\Controllers\HomeController::class, 'payment_history'])->name('payment.history');
 Route::get('/member/profile', [App\Http\Controllers\HomeController::class, 'profile'])->name('profile');
+Route::post('/member/avatar/{id}', [App\Http\Controllers\HomeController::class, 'upload_avatar'])->name('upload-avatar');
+Route::post('/member/update/password/{id}', [App\Http\Controllers\HomeController::class, 'update_password'])->name('update.password');
 Route::post('/member/profile/update/{id}', [App\Http\Controllers\HomeController::class, 'profile_update'])->name('profile.update');
-
+Route::get('/member/view/general/messages/notifications', [App\Http\Controllers\HomeController::class, 'view_general_messages_notifications'])->name('view.general.messages_notifications');
+Route::get('/member/view/personal/messages/notifications', [App\Http\Controllers\HomeController::class, 'view_personal_messages_notifications'])->name('view.personal.messages_notifications');
+Route::any('/message/message/read/{id}', [App\Http\Controllers\HomeController::class, 'read_message'])->name('read.message');
 
 // Admin
 Route::get('/admin/login', [App\Http\Controllers\HomePageController::class, 'admin_login']);
@@ -53,4 +59,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/create/general/message', [App\Http\Controllers\AdminController::class, 'create_general_message'])->name('admin.create.general.message');
     Route::post('/admin/general/message', [App\Http\Controllers\AdminController::class, 'message_general'])->name('admin.message.general');
     Route::get('/admin/view/messages', [App\Http\Controllers\AdminController::class, 'view_messages'])->name('admin.view.messages');
+    Route::get('/admin/view/membership/requests', [App\Http\Controllers\AdminController::class, 'view_membership_requests'])->name('admin.view.membership.requests');
+    Route::post('/admin/confirm/membership/request/{id}', [App\Http\Controllers\AdminController::class, 'confirm_member'])->name('admin.confirm.member');
+    Route::get('/admin/decline/membership/request/{id}', [App\Http\Controllers\AdminController::class, 'decline_member'])->name('admin.decline.member');
 });

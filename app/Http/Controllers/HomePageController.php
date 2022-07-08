@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\MembershipRequest;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 
@@ -76,12 +77,21 @@ class HomePageController extends Controller
     public function post_member_login(Request $request)
     {
         $this->validate($request, [
-            'membership_id' => 'exists:users,membership_id'
+            'membership_id' => 'exists:users,membership_id',
+            'password' => ['required', 'string', 'min:8'],
         ]);
         
         $input = $request->only(['membership_id', 'password']);
         
         $user = User::query()->where('membership_id', $request->membership_id)->first();
+
+        if ($user && !Hash::check($request->password, $user->password)){
+            return back()->with('failure_report', 'Incorrect Password!');
+        }
+
+        if(!$user || !Hash::check($request->password, $user->password)) {
+            return back()->with('failure_report', 'Membership ID does\'nt exist');
+        }
 
         // authentication attempt
         if (auth()->attempt($input)) {
@@ -93,5 +103,44 @@ class HomePageController extends Controller
         } else {
             return back()->with('failure_report', 'User authentication failed.');
         }
+    }
+
+    public function download_constitution() {
+
+        return Storage::download('/public/guarantor_valid_id/'.$documentFinder);
+    }
+
+    public function membership_eligibility(Request $request)
+    {
+
+        //Validate Request
+        $this->validate($request, [
+            'title' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string'],
+            'second_name' => ['required', 'string'],
+            'phone_number' => ['required', 'numeric'],
+            'whatsapp_number' => ['required', 'numeric'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'graduation_set_class' => ['required', 'string'],
+            'state_of_origin' => ['required', 'string'],
+            'occupation' => ['required', 'string'],
+        ]);
+
+        MembershipRequest::create([
+            'title' => $request->title,
+            'surname' => $request->surname,
+            'first_name' => $request->first_name,
+            'second_name' => $request->second_name,
+            'phone_number' => $request->phone_number,
+            'whatsapp_number' => $request->whatsapp_number,
+            'email' => $request->email,
+            'graduation_set_class' => $request->graduation_set_class,
+            'state_of_origin' => $request->state_of_origin,
+            'occupation' => $request->occupation,
+        ]);
+
+        return back()->with('success_report', 'Membership Request Sent Successfully, Admin will contact your shortly!');            
+        
     }
 }

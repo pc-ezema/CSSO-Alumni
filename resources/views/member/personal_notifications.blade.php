@@ -1,11 +1,11 @@
-@extends('layouts.admin_dashboard')
+@extends('layouts.dashboard')
 
 @section('page-content')
 <!-- begin app-container -->
 <div class="app-container">
     <!-- begin app-nabar -->
     @section('navbar')
-    @includeIf('layouts.admin_navbar')
+    @includeIf('layouts.navbar')
     @endsection
     <!-- end app-navbar -->
     <!-- begin app-main -->
@@ -18,7 +18,7 @@
                     <!-- begin page title -->
                     <div class="d-block d-sm-flex flex-nowrap align-items-center">
                         <div class="page-title mb-2 mb-sm-0">
-                            <h1>All Messages</h1>
+                            <h1>Personal Messages</h1>
                         </div>
                         <div class="ml-auto d-flex align-items-center">
                             <nav>
@@ -45,16 +45,6 @@
                             <div class="row no-gutters">
                                 <div class="col border-md-t">
                                     <div class="mail-content  border-right border-n h-100">
-                                        <!-- <div class="mail-search border-bottom">
-                                            <div class="row align-items-center mx-0">
-                                                <div class="col-12">
-                                                    <div class="form-group pt-3">
-                                                        <input type="text" class="form-control" id="search" placeholder="Search..">
-                                                        <i class="fa fa-search"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                         <div class="mail-msg scrollbar scroll_dark">
                                             @if($notifications->isEmpty())
                                             <div class="mail-msg-item">
@@ -69,24 +59,22 @@
                                             @else
                                             @foreach($notifications as $notify)
                                             @if($notify->status == 'Read')
-                                            <div class="mail-msg-item" style="background: #f9f9fb">
-                                                <!-- <a href=""> -->
-                                                    <div class="media align-items-center">
-                                                        <div class="w-100">
-                                                            <div class="mail-msg-item-titel justify-content-between">
-                                                                <p class="text-dark">{{$notify->from}} - {{$notify->to}}</p>
-                                                                <p class="d-block text-dark"><i class="nav-icon ti ti-eye "></i> {{$notify->seen}}</p>
-                                                            </div>
-                                                            <h5 class="mb-0 my-2">{{$notify->subject}}</h5>
-                                                            <p>{{$notify->message}}</p>
-                                                            <p class="">{{$notify->created_at->diffForHumans()}}</p>
+                                            <div class="mail-msg-item" style="background: #fff;">
+                                                <div class="media align-items-center">
+                                                    <div class="w-100">
+                                                        <div class="mail-msg-item-titel justify-content-between">
+                                                            <p class="text-dark">{{$notify->from}} - {{$notify->to}}</p>
+                                                            <p class="d-block text-dark"><i class="nav-icon ti ti-eye "></i> {{$notify->seen}}</p>
                                                         </div>
+                                                        <h5 class="mb-0 my-2">{{$notify->subject}}</h5>
+                                                        <p>{{$notify->message}}</p>
+                                                        <p class="">{{$notify->updated_at->toDayDateTimeString()}}</p>
                                                     </div>
-                                                <!-- </a> -->
+                                                </div>
                                             </div>
                                             @else
                                             <div class="mail-msg-item">
-                                                <!-- <a href=""> -->
+                                                <a href="{{route('read.message', Crypt::encrypt($notify->id))}}">
                                                     <div class="media align-items-center">
                                                         <div class="w-100">
                                                             <div class="mail-msg-item-titel justify-content-between">
@@ -95,10 +83,10 @@
                                                             </div>
                                                             <h5 class="mb-0 my-2">{{$notify->subject}}</h5>
                                                             <p>{{$notify->message}}</p>
-                                                            <p class="">{{$notify->created_at->toDayDateTimeString()}}</p>
+                                                            <p class="">{{$notify->updated_at->toDayDateTimeString()}}</p>
                                                         </div>
                                                     </div>
-                                                <!-- </a> -->
+                                                </a>
                                             </div>
                                             @endif
                                             @endforeach

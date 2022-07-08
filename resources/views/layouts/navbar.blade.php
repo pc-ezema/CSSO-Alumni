@@ -19,12 +19,11 @@
                 </a> 
             </li>
             <li>
-                <a href="#" aria-expanded="false">
-                    <i class="nav-icon fe fe-mail"></i>
-                    <span class="nav-title">
-                        Messages/ Notification
-                    </span>
-                </a> 
+                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="nav-icon fe fe-mail"></i><span class="nav-title">Messages/Notifications</span></a>
+                <ul aria-expanded="false">
+                    <li> <a href="{{ route('view.general.messages_notifications') }}">General</a> </li>
+                    <li> <a href="{{ route('view.personal.messages_notifications') }}">Personal</a> </li>
+                </ul>
             </li>
             <li>
                 <a href="{{route('payment.history')}}" aria-expanded="false">

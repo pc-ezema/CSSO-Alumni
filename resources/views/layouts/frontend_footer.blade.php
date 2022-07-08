@@ -31,13 +31,13 @@
         <div class="row">
             <div class="col-lg-4">
                 <div class="text">
-                    <a href="index"><img src="assets/images/CSSO A.png" draggable="false" alt=""></a>
+                    <a href="/"><img src="{{URL::asset('assets/images/CSSO A.png')}}" draggable="false" alt=""></a>
                     <!-- <p class="ade">
                             1, COMMUNITY SECONDARY SCHOOL OBOSI, MIKE AJAEGBO ROAD, IDEMILI NORTH, NIGERIA.
                         </p> -->
                     <div class="block">
                         <div class="media-icons">
-                            <a href="https:://facebook.com/groups/cssoalumni"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://cssoalumni.org/:/facebook.com/groups/cssoalumni"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://twitter.com/CSSOALUMNI"><i class="fab fa-twitter"></i></a>
                             <a href="#"><i class="fab fa-instagram"></i></a>
                             <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -62,13 +62,13 @@
                             <a href="/about">About Us</a>
                         </li>
                         <li>
-                            <a href="#">Executives</a>
+                            <a href="/leadership">Leadership</a>
                         </li>
                         <li>
                             <a href="/members">Become A Member</a>
                         </li>
                         <li>
-                            <a href="/member">Contact Us</a>
+                            <a href="/contact">Contact Us</a>
                         </li>
                     </ul>
                 </div>
@@ -83,10 +83,10 @@
                             <i class="bi bi-envelope-open"></i> info@cssoalumni.org
                         </li>
                         <li>
-                            <i class="bi bi-telephone-outbound"></i> + 234 7085 652 243
+                            <i class="bi bi-telephone-outbound"></i> +234 803 3796 762
                         </li>
                         <li>
-                            <i class="bi bi-telephone-outbound"></i> + 234 7085 652 243
+                            <i class="bi bi-telephone-outbound"></i> +234 813 0000 309
                         </li>
                     </ul>
                 </div>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="copy">
                     <p>
-                        Copyright © 2022 CSSO Alumni. All Rights Reserved. <a href="https://greenmousetech.com/"> Site Credit </a>
+                        Copyright © 2022 CSSO Alumni Association. All Rights Reserved. <a href="https://greenmousetech.com/"> Site Credit </a>
                     </p>
                 </div>
             </div>

@@ -69,7 +69,7 @@
                                             </li>
                                             <li class="list-inline-item">|</li>
                                             <li class="list-inline-item">
-                                                <small>{{$donation_due->created_at->diffForHumans()}}</small>
+                                                <small>{{$donation_due->created_at->toDayDateTimeString()}}</small>
                                             </li>
                                         </ul>
                                     </div>
