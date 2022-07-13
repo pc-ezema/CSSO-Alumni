@@ -812,8 +812,10 @@ header .navbar .signin:hover{
 }
 .footer .block{
     position: relative;
-    left: 60px;
+    /* left: 60px; */
     top: 20px;
+    display: flex;
+    justify-content: center;
 }
 .footer .media-icons a{
     height: 40px;
@@ -876,7 +878,7 @@ header .navbar .signin:hover{
 @media (max-width:520px) {
     .footer .block{
         position: relative;
-        left: 45px;
+        /* left: 45px; */
         top: 20px;
         margin-bottom: 50px;
     }

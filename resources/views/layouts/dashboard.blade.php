@@ -11,7 +11,7 @@
         <!-- bootstrap-icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <!-- app favicon -->
-        <link rel="icon" href="{{URL::asset('assets/images/image 1.png')}}">
+        <link rel="icon" href="{{URL::asset('assets/images/CSSO-logo.png')}}">
         <!-- google fonts -->
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
         <!-- plugin stylesheets -->

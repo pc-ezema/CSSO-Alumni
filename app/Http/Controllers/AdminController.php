@@ -85,7 +85,8 @@ class AdminController extends Controller
         ]);         
     }
 
-    function membership_id($input, $strength = 4) {
+    function membership_id($input, $strength = 4) 
+    {
         $input = '0123456789';
         $input_length = strlen($input);
         $random_string = '';

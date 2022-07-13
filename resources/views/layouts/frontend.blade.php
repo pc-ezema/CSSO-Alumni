@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="{{URL::asset('assets/images/CSSO A.png')}}">
+        <link rel="icon" href="{{URL::asset('assets/images/CSSO-logo.png')}}">
         <title>{{config('app.name')}}</title>
         <link rel="stylesheet" href="{{URL::asset('assets/css/style.css')}}">
         <link rel="stylesheet" href="{{URL::asset('assets/css/bootstrap.min.css')}}">

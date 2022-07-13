@@ -55,7 +55,7 @@
                                                         @endif
                                                     </div>
                                                     <div class="profile pt-4">
-                                                        <h4 class="mb-1">{{Auth::user()->first_name}} {{Auth::user()->second_name}}</h4>
+                                                        <h4 class="mb-1">{{Auth::user()->first_name}} {{Auth::user()->surname}}</h4>
                                                         <p>{{Auth::user()->email}}</p>
                                                     </div>
                                                 </div>

@@ -204,7 +204,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 mb-4 text-center">
+                        <div class="col-12 mb-4 text-center">
                             <button class="send" style="color: #fff;" type="submit" class="lenn">Submit</button>
                         </div>
                     </div>
