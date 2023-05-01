@@ -248,7 +248,19 @@ class AdminController extends Controller
         $donationFinder = Crypt::decrypt($id);
   
         //Donation/Dues
-        DonationDue::find($donationFinder)->delete();
+        $dd = DonationDue::find($donationFinder);
+
+        $payment = Payment::where('donation_due_id', $dd->id)->get();
+
+        if(count($payment) > 0)
+        {
+            return back()->with([
+                'type' => 'danger',
+                'message' => "This donation data, users has processed it, you can't delete it"
+            ]); 
+        }
+
+        $dd->delete();
 
         return back()->with([
             'type' => 'success',
