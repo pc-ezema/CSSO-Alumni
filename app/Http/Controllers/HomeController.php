@@ -104,11 +104,16 @@ class HomeController extends Controller
     {
         $donation_dues = DonationDue::latest()->get();
         
-        foreach($donation_dues as $dd)
+        if($donation_dues->isEmpty())
         {
-            $donation[] = ['all' => $dd, 'paid' => Payment::latest()->where('donation_due_id', $dd->id)->where('membership_id', Auth::user()->id)->get()->sum('amount'), 'balance' => ($dd->amount - Payment::latest()->where('donation_due_id', $dd->id)->where('membership_id', Auth::user()->id)->get()->sum('amount') )];
+            $donation = [];
+        } else {
+            foreach($donation_dues as $dd)
+            {
+                $donation[] = ['all' => $dd, 'paid' => Payment::latest()->where('donation_due_id', $dd->id)->where('membership_id', Auth::user()->id)->get()->sum('amount'), 'balance' => ($dd->amount - Payment::latest()->where('donation_due_id', $dd->id)->where('membership_id', Auth::user()->id)->get()->sum('amount') )];
+            }
         }
-
+        
         $my_donations = array_values(array_unique($donation, 0));
 
         return view('member.donations_dues',[
