@@ -1,6 +1,6 @@
 <aside class="app-navbar">
     <!-- begin sidebar-nav -->
-    <div class="sidebar-nav scrollbar scroll_light">
+    <div class="sidebar-nav scrollbar scroll_light" style="background: #e5e5e5 !important;">
         <ul class="metismenu " id="sidebarNav">
             <li>
                 <a href="/member/dashboard" aria-expanded="false">

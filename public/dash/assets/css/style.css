@@ -14829,7 +14829,7 @@ body.sidebar-mini .app-main .container-fluid {
     }
 }
 .app-main .container-fluid {
-    padding: 95px 30px 60px 30px;
+    padding: 135px 30px 60px 30px;
     transition: all 0.3s ease-out;
 }
 @media screen and (min-width: 577px) and (max-width: 767px) {
@@ -14865,21 +14865,21 @@ body.sidebar-mini .app-main .container-fluid {
     .footer {
         width: 100%;
         height: auto;
-        position: relative;
+        /* position: relative; */
     }
 }
 @media screen and (min-width: 480px) and (max-width: 576px) {
     .footer {
         width: 100%;
         height: auto;
-        position: relative;
+        /* position: relative; */
     }
 }
 @media screen and (max-width: 480px) {
     .footer {
         width: 100%;
         height: auto;
-        position: relative;
+        /* position: relative; */
     }
 }
 .footer a:hover {
@@ -15067,7 +15067,7 @@ ol.breadcrumb {
         height: 100%;
         max-width: 100%;
         outline: 0;
-        margin-top: 100px;
+        margin-top: 50px;
         direction: ltr;
         background-color: #E5E5E5 !important;
     }

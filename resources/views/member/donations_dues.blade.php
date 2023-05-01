@@ -47,70 +47,126 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                @if($donation_dues->isEmpty())
+                                @forelse($my_donations as $donation_due)
+                                    @if($donation_due['all']['user_id'] == Auth::user()->id)
+                                    <div class="row active-task m-b-20">
+                                        <div class="col-lg-1">
+                                            <div class="bg-type mt-1">
+                                                <span>{{strtoupper(substr($donation_due['all']['title'], 0, 2))}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <h5 class="mb-0"><a href="#">{{$donation_due['all']['title']}} - ₦{{number_format($donation_due['all']['amount'], 2)}}</a></h5>
+                                            <ul class="list-unstyled list-inline">
+                                                <li class="list-inline-item">
+                                                    <small> {{$donation_due['all']['description']}}</small>
+                                                </li>
+                                                <li class="list-inline-item">|</li>
+                                                <li class="list-inline-item">
+                                                    <small>{{$donation_due['all']['created_at']->toDayDateTimeString()}}</small>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <h5 class="mb-0"><a href="#">Paid - ₦{{number_format($donation_due['paid'], 2)}}</a></h5>
+                                        </div>
+                                        @if($donation_due['paid'] >= $donation_due['all']['amount'])
+                                        <div class="col-lg-3">
+                                            <a href="#" class="btn btn-success btn-round btn-xs" style="cursor: pointer">Payment Completed</a>
+                                        </div>
+                                        @else
+                                        <div class="col-lg-3">
+                                            <a href="#" data-toggle="modal" data-target="#proceed-{{$donation_due['all']['id']}}"  class="btn btn-primary btn-round btn-xs" style="cursor: pointer">Make Payment</a>
+                                        </div>
+                                        @endif
+
+                                        <div class="modal fade" id="proceed-{{$donation_due['all']['id']}}" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-right" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Proceed To Payment</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST" action="{{ route('payment', Crypt::encrypt($donation_due['all']['id'])) }}">
+                                                            @csrf
+                                                            <div class="form-group">
+                                                                <label for="amount">Amount</label>
+                                                                <input type="number" class="form-control" max="{{$donation_due['balance']}}" id="amount" name="amount">
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @if($donation_due['all']['admin_id'])
+                                    <div class="row active-task m-b-20">
+                                        <div class="col-lg-1">
+                                            <div class="bg-type mt-1">
+                                                <span>{{strtoupper(substr($donation_due['all']['title'], 0, 2))}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <h5 class="mb-0"><a href="#">{{$donation_due['all']['title']}} - ₦{{number_format($donation_due['all']['amount'], 2)}}</a></h5>
+                                            <ul class="list-unstyled list-inline">
+                                                <li class="list-inline-item">
+                                                    <small> {{$donation_due['all']['description']}}</small>
+                                                </li>
+                                                <li class="list-inline-item">|</li>
+                                                <li class="list-inline-item">
+                                                    <small>{{$donation_due['all']['created_at']->toDayDateTimeString()}}</small>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <h5 class="mb-0"><a href="#">Paid - ₦{{number_format($donation_due['paid'], 2)}}</a></h5>
+                                        </div>
+                                        @if($donation_due['paid'] >= $donation_due['all']['amount'])
+                                        <div class="col-lg-3">
+                                            <a href="#" class="btn btn-success btn-round btn-xs" style="cursor: pointer">Payment Completed</a>
+                                        </div>
+                                        @else
+                                        <div class="col-lg-3">
+                                            <a href="#" data-toggle="modal" data-target="#proceed-{{$donation_due['all']['id']}}"  class="btn btn-primary btn-round btn-xs" style="cursor: pointer">Make Payment</a>
+                                        </div>
+                                        @endif
+
+                                        <div class="modal fade" id="proceed-{{$donation_due['all']['id']}}" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-right" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Proceed To Payment</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form method="POST" action="{{ route('payment', Crypt::encrypt($donation_due['all']['id'])) }}">
+                                                            @csrf
+                                                            <div class="form-group">
+                                                                <label for="amount">Amount</label>
+                                                                <input type="number" class="form-control" max="{{$donation_due['balance']}}" id="amount" name="amount">
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                @empty
                                 <div class="row active-task m-b-20">
                                     <div class="col-12">
                                         <h5 class="mb-0"><a href="#">No Donations/Dues</a></h5>
                                     </div>
                                 </div>
-                                @else
-                                @foreach($donation_dues as $donation_due)
-                                    @if($donation_due->user_id == Auth::user()->id)
-                                    <div class="row active-task m-b-20">
-                                        <div class="col-1">
-                                            <div class="bg-type mt-1">
-                                                <span>{{strtoupper(substr($donation_due->title, 0, 2))}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-8">
-                                            <h5 class="mb-0"><a href="#">{{$donation_due->title}} - ₦{{number_format($donation_due->amount, 2)}}</a></h5>
-                                            <ul class="list-unstyled list-inline">
-                                                <li class="list-inline-item">
-                                                    <small> {{$donation_due->description}}</small>
-                                                </li>
-                                                <li class="list-inline-item">|</li>
-                                                <li class="list-inline-item">
-                                                    <small>{{$donation_due->created_at->toDayDateTimeString()}}</small>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-3">
-                                            <form method="POST" action="{{ route('payment', Crypt::encrypt($donation_due->id)) }}">
-                                                @csrf
-                                                <button type="submit" class="btn btn-primary btn-round btn-xs" style="cursor: pointer">Make Payment</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    @endif
-                                    @if($donation_due->admin_id)
-                                    <div class="row active-task m-b-20">
-                                        <div class="col-1">
-                                            <div class="bg-type mt-1">
-                                                <span>{{strtoupper(substr($donation_due->title, 0, 2))}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-8">
-                                            <h5 class="mb-0"><a href="#">{{$donation_due->title}} - ₦{{number_format($donation_due->amount, 2)}}</a></h5>
-                                            <ul class="list-unstyled list-inline">
-                                                <li class="list-inline-item">
-                                                    <small> {{$donation_due->description}}</small>
-                                                </li>
-                                                <li class="list-inline-item">|</li>
-                                                <li class="list-inline-item">
-                                                    <small>{{$donation_due->created_at->toDayDateTimeString()}}</small>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-3">
-                                            <form method="POST" action="{{ route('payment', Crypt::encrypt($donation_due->id)) }}">
-                                                @csrf
-                                                <button type="submit" class="btn btn-primary btn-round btn-xs" style="cursor: pointer">Make Payment</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    @endif
-                                @endforeach
-                                @endif
+                                @endforelse
                             </div>
                         </div>
                     </div>

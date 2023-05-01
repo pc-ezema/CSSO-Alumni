@@ -60,11 +60,11 @@ class HomeController extends Controller
         }
         
         $donation_dues = DonationDue::get();
-        $payment_histories = Payment::latest()->where('membership_id', Auth::user()->membership_id)->take(5)->get();
-        $self_notifications = Notification::latest()->where('to', Auth::user()->membership_id)->get();
+        $payment_histories = Payment::latest()->where('membership_id', Auth::user()->id)->take(5)->get();
+        $self_notifications = Notification::latest()->where('to', Auth::user()->id)->get();
         $general_notifications = Notification::latest()->where('to', 'Members')->get();
         $generals = Notification::latest()->where('to', 'Members')->take(5)->get();
-        $self = Notification::latest()->where('to', Auth::user()->membership_id)->where('status', 'Unread')->get();
+        $self = Notification::latest()->where('to', Auth::user()->id)->where('status', 'Unread')->get();
 
         return view('member.home', compact('greetings', 'donation_dues', 'payment_histories', 
                                 'generals', 'self', 'self_notifications', 'general_notifications'));
@@ -103,12 +103,16 @@ class HomeController extends Controller
     public function donations_dues()
     {
         $donation_dues = DonationDue::latest()->get();
-                        // DonationDue::join('payments', 'payments.donation_due_id', '=', 'donation_dues.id')
-                        // ->select('donation_dues.*', 'payments.status')
-                        // ->where
-                        // ->get();
+        
+        foreach($donation_dues as $dd)
+        {
+            $donation[] = ['all' => $dd, 'paid' => Payment::latest()->where('donation_due_id', $dd->id)->where('membership_id', Auth::user()->id)->get()->sum('amount'), 'balance' => ($dd->amount - Payment::latest()->where('donation_due_id', $dd->id)->where('membership_id', Auth::user()->id)->get()->sum('amount') )];
+        }
+
+        $my_donations = array_values(array_unique($donation, 0));
+
         return view('member.donations_dues',[
-            'donation_dues' => $donation_dues
+            'my_donations' => $my_donations
         ]);
     }
 
@@ -118,7 +122,17 @@ class HomeController extends Controller
 
         $donation_dues = DonationDue::findorfail($Finder);
 
-        $payments = Payment::latest()->where('membership_id', Auth::user()->membership_id)->get();
+        $payments = Payment::latest()->where('donation_due_id', $donation_dues->id)->where('membership_id', Auth::user()->id)->get();
+
+        $balance = $donation_dues->amount - $payments->sum('amount');
+
+        if($request->amount > $balance)
+        {
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Amount entered is greater than remaining balance of:'.number_format($balance, 2)
+            ]);
+        }
 
         if ($payments->isEmpty()) 
         {
@@ -128,12 +142,12 @@ class HomeController extends Controller
 
             $fields = [
                 'email' => Auth::user()->email,
-                'amount' => $donation_dues->amount * 100,
+                'amount' => $request->amount * 100,
                 'callback_url' => url('/member/payment/callback'),
                 'metadata' => [
                     'donation_due_id' => $donation_dues->id,
                     'donation_due_title' => $donation_dues->title,
-                    'membership_id' => Auth::user()->membership_id,
+                    'membership_id' => Auth::user()->id,
                     'name' => Auth::user()->first_name. ' ' .Auth::user()->second_name
                 ]
             ];
@@ -174,13 +188,13 @@ class HomeController extends Controller
                 ]); 
             }
         } else {
-            foreach ($payments as $payment) {
-                $donation_due[] = $payment->donation_due_id;
-            }
-            if (in_array($donation_dues->id, $donation_due)) {
+            // foreach ($payments as $payment) {
+            //     $amount = $payment->sum('amount');
+            // }
+            if ($payments->sum('amount') >= $donation_dues->amount) {
                 return back()->with([
                     'type' => 'danger',
-                    'message' => 'Payment has been made!'
+                    'message' => 'Payment Conpleted!'
                 ]);
             } else {
                 $SECRET_KEY = config('app.paystack_secret_key');;
@@ -189,12 +203,12 @@ class HomeController extends Controller
 
                 $fields = [
                     'email' => Auth::user()->email,
-                    'amount' => $donation_dues->amount * 100,
+                    'amount' => $request->amount * 100,
                     'callback_url' => url('/member/payment/callback'),
                     'metadata' => [
                         'donation_due_id' => $donation_dues->id,
                         'donation_due_title' => $donation_dues->title,
-                        'membership_id' => Auth::user()->membership_id,
+                        'membership_id' => Auth::user()->id,
                         'name' => Auth::user()->first_name. ' ' .Auth::user()->second_name
                     ]
                 ];
@@ -297,7 +311,7 @@ class HomeController extends Controller
 
     public function payment_history()
     {
-        $payments = Payment::latest()->get();
+        $payments = Payment::latest()->where('membership_id', Auth::user()->id)->get();
         return view('member.payment_history',[
             'payments' => $payments
         ]);
