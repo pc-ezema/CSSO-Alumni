@@ -146,4 +146,9 @@ class HomePageController extends Controller
         return back()->with('success_report', 'Membership Request Sent Successfully, Admin will contact your shortly!');            
         
     }
+
+    public function forget_password()
+    {
+        return view('auth.passwords.email');
+    }
 }

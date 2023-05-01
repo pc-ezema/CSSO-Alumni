@@ -63,7 +63,7 @@
                                                 <div class="media align-items-center">
                                                     <div class="w-100">
                                                         <div class="mail-msg-item-titel justify-content-between">
-                                                            <p class="text-dark">{{$notify->from}} - {{$notify->to}}</p>
+                                                            <p class="text-dark">{{$notify->from}} - Me</p>
                                                             <p class="d-block text-dark"><i class="nav-icon ti ti-eye "></i> {{$notify->seen}}</p>
                                                         </div>
                                                         <h5 class="mb-0 my-2">{{$notify->subject}}</h5>
@@ -78,7 +78,7 @@
                                                     <div class="media align-items-center">
                                                         <div class="w-100">
                                                             <div class="mail-msg-item-titel justify-content-between">
-                                                                <p class="text-dark">{{$notify->from}} - {{$notify->to}}</p>
+                                                                <p class="text-dark">{{$notify->from}} - Me</p>
                                                                 <p class="d-block text-dark"><i class="nav-icon ti ti-eye "></i> {{$notify->seen}}</p>
                                                             </div>
                                                             <h5 class="mb-0 my-2">{{$notify->subject}}</h5>

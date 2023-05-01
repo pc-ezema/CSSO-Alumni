@@ -58,7 +58,7 @@
 
             <!-- Services -->
             <div class="row">
-                <div class="col-lg-6 col-xxl-4 m-b-30">
+                <div class="col-lg-6 col-xl-6 m-b-30">
                     <div class="longer">
                         <div class="card card-statistics h-100 mb-0">
                             <div class="card-header d-flex justify-content-between">
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-xxl-4 m-b-30">
+                <div class="col-lg-6 col-xl-6 m-b-30">
                     <div class="card card-statistics h-100 mb-0">
                         <div class="card-header d-flex justify-content-between">
                             <div class="card-heading">

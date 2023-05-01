@@ -39,7 +39,7 @@
                 </div>
                 <!-- begin row -->
                 <div class="row">
-                    <div class="col-xxl-4 mb-30">
+                    <div class="col-12 mb-30">
                         <div class="card card-statistics h-100 mb-0">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="card-heading">
@@ -75,6 +75,17 @@
                                             <li class="list-inline-item">
                                                 <small>{{$donation_due->created_at->diffForHumans()}}</small>
                                             </li>
+                                            <li class="list-inline-item">|</li>
+                                            @if($donation_due->user_id)
+                                            <li class="list-inline-item">
+                                                <small class="text-dark">To {{App\Models\User::find($donation_due->user_id)->surname}} {{App\Models\User::find($donation_due->user_id)->first_name}} {{App\Models\User::find($donation_due->user_id)->second_name}}</small>
+                                            </li>
+                                            @endif
+                                            @if($donation_due->admin_id)
+                                            <li class="list-inline-item">
+                                                <small class="text-dark">To All Members</small>
+                                            </li>
+                                            @endif
                                         </ul>
                                     </div>
                                     <div class="col-2">
@@ -133,6 +144,20 @@
                                     <div class="form-group">
                                         <label for="description">Description</label>
                                         <textarea type="text" class="form-control" id="description" rows="6" name="description"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id">To Who</label>
+                                        <select class="form-control" id="id" name="user">
+                                            <option value="">-- Select where this payment request goes to --</option>
+                                            <optgroup label="All Members">
+                                                <option value="all">To All Members</option>
+                                            </optgroup>
+                                            <optgroup label="To A Selected Member">
+                                                @foreach(App\Models\User::where('user_type', 'Member')->get() as $user)
+                                                <option value="{{$user->id}}">{{$user->surname}} {{$user->first_name}} {{$user->second_name}}</option>
+                                                @endforeach
+                                            </optgroup>
+                                        </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
                                 </form>

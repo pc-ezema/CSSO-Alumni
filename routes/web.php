@@ -26,6 +26,8 @@ Route::post('/membership/eligibility', [App\Http\Controllers\HomePageController:
 // Member
 Auth::routes();
 Route::post('/member/login', [App\Http\Controllers\HomePageController::class, 'post_member_login'])->name('member.login');
+Route::get('/password/forget', [App\Http\Controllers\HomePageController::class, 'forget_password'])->name('member.forget.password');
+Route::get('/reset/password/email/{email}', [App\Http\Controllers\HomePageController::class, 'password_reset_email'])->name('user.reset.password');
 Route::get('/member/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/member/donations/dues', [App\Http\Controllers\HomeController::class, 'donations_dues'])->name('donations.dues');
 Route::post('/member/make/payment/{id}', [App\Http\Controllers\HomeController::class, 'make_payment'])->name('payment');

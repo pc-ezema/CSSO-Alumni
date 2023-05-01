@@ -132,7 +132,7 @@
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="left" valign="top" style="border-bottom: 1px solid #264774; border-top: 1px solid #264774; padding: 10px 30px 20px 30px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 1px; line-height: 10px;">
-                            <h1 style="font-size: 20px; font-weight: 400;">Hello {{$name}}</h1> 
+                            <h1 style="font-size: 20px; font-weight: 400;">Hello {{$name}},</h1> 
                         </td>
                     </tr>
                 </table>

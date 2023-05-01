@@ -65,7 +65,7 @@ class AdminController extends Controller
         
         User::create([
             'user_type' => 'Member',
-            'membership_id' => 'CSSO-'.$this->membership_id(4),
+            'membership_id' => 'CSSO-'.$this->membership_id(),
             'title' => $request->title,
             'surname' => $request->surname,
             'first_name' => $request->first_name,
@@ -85,17 +85,13 @@ class AdminController extends Controller
         ]);         
     }
 
-    function membership_id($input, $strength = 4) 
+    function membership_id() 
     {
-        $input = '0123456789';
-        $input_length = strlen($input);
-        $random_string = '';
-        for($i = 0; $i < $strength; $i++) {
-            $random_character = $input[mt_rand(0, $input_length - 1)];
-            $random_string .= $random_character;
-        }
-    
-        return $random_string;
+        $user = User::orderBy('id', 'DESC')->first();
+
+        $last_user = (str_replace('CSSO-','',$user->membership_id));
+
+        return (int)$last_user + 1;
     }
 
     public function view_members()
@@ -183,19 +179,61 @@ class AdminController extends Controller
 
     public function add_payment_request(Request $request)
     {
+        $messages = [
+            'user.required' => 'User receiving this request is required.',
+        ];
+
         //Validate Request
         $this->validate($request, [
             'title' => ['required', 'string', 'max:255'],
             'amount' => ['required', 'numeric'],
             'description' => ['required', 'string'],
-        ]);
+            'user' => ['required', 'string']
+        ], $messages);
         
-        DonationDue::create([
-            'title' => $request->title,
-            'amount' => $request->amount,
-            'description' => $request->description
-        ]);
+        if($request->user == 'all')
+        {
+            DonationDue::create([
+                'admin_id' => Auth::user()->id,
+                'title' => $request->title,
+                'amount' => $request->amount,
+                'description' => $request->description
+            ]);
 
+            $message = new Notification();
+            $message->from = 'Admin';
+            $message->to = 'Members';
+            $message->subject = 'Donation/Due';
+            $message->message = $request->title;
+            $message->save();
+
+        } else {
+            DonationDue::create([
+                'user_id' => $request->user,
+                'title' => $request->title,
+                'amount' => $request->amount,
+                'description' => $request->description
+            ]);
+
+            $message = new Notification();
+            $message->from = 'Admin';
+            $message->to = $request->user;
+            $message->subject = 'Donation/Due';
+            $message->message = $request->title;
+            $message->save();
+
+            /** Store information to include in mail in $data as an array */
+            $data = array(
+                'name' => User::find($request->user)->first_name. ' ' .User::find($request->user)->second_name,
+                'email' => User::find($request->user)->email
+            );
+            
+            /** Send message to the user */
+            Mail::send('emails.notification', $data, function ($m) use ($data) {
+                $m->to($data['email'])->subject('C.S.S.O ALUMNI ASSOCIATION');
+            });
+        }
+       
         $donation_dues = DonationDue::latest()->get();
 
         return back()->with([
@@ -270,7 +308,7 @@ class AdminController extends Controller
         
         /** Send message to the user */
         Mail::send('emails.notification', $data, function ($m) use ($data) {
-            $m->to($data['email'])->subject('C.S.S.O OBOSI ALUMNI ASSOCIATION');
+            $m->to($data['email'])->subject('C.S.S.O ALUMNI ASSOCIATION');
         });
 
         return back()->with([
@@ -346,7 +384,7 @@ class AdminController extends Controller
 
         $user = User::create([
             'user_type' => 'Member',
-            'membership_id' => 'CSSO-'.$this->membership_id(4),
+            'membership_id' => 'CSSO-'.$this->membership_id(),
             'title' => $member_request->title,
             'surname' => $member_request->surname,
             'first_name' => $member_request->first_name,
@@ -369,7 +407,7 @@ class AdminController extends Controller
         
         /** Send message to the user */
         Mail::send('emails.approve_membership_request', $data, function ($m) use ($data) {
-            $m->to($data['email'])->subject('C.S.S.O OBOSI ALUMNI ASSOCIATION');
+            $m->to($data['email'])->subject('C.S.S.O ALUMNI ASSOCIATION');
         });
         
 
@@ -396,7 +434,7 @@ class AdminController extends Controller
         
         /** Send message to the user */
         Mail::send('emails.decline_membership_request', $data, function ($m) use ($data) {
-            $m->to($data['email'])->subject('C.S.S.O OBOSI ALUMNI ASSOCIATION');
+            $m->to($data['email'])->subject('C.S.S.O ALUMNI ASSOCIATION');
         });
         
 

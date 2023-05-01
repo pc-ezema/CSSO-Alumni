@@ -314,7 +314,7 @@ class HomeController extends Controller
 
     public function view_personal_messages_notifications()
     {
-        $notifications = Notification::latest()->where('to', Auth::user()->membership_id)->get();
+        $notifications = Notification::latest()->where('to', Auth::user()->id)->get();
 
         return view('member.personal_notifications', [
             'notifications' => $notifications

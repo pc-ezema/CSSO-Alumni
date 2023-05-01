@@ -74,7 +74,11 @@
                                                     <div class="media align-items-center">
                                                         <div class="w-100">
                                                             <div class="mail-msg-item-titel justify-content-between">
+                                                                @if($notify->to == 'Members')
                                                                 <p class="text-dark">{{$notify->from}} - {{$notify->to}}</p>
+                                                                @else
+                                                                <p class="text-dark">{{$notify->from}} - {{App\Models\User::find($notify->to)->surname}}, {{App\Models\User::find($notify->to)->first_name}} {{App\Models\User::find($notify->to)->second_name}}</p>
+                                                                @endif
                                                                 <p class="d-block text-dark"><i class="nav-icon ti ti-eye "></i> {{$notify->seen}}</p>
                                                             </div>
                                                             <h5 class="mb-0 my-2">{{$notify->subject}}</h5>
@@ -90,7 +94,11 @@
                                                     <div class="media align-items-center">
                                                         <div class="w-100">
                                                             <div class="mail-msg-item-titel justify-content-between">
+                                                                @if($notify->to == 'Members')
                                                                 <p class="text-dark">{{$notify->from}} - {{$notify->to}}</p>
+                                                                @else
+                                                                <p class="text-dark">{{$notify->from}} - {{App\Models\User::find($notify->to)->surname}}, {{App\Models\User::find($notify->to)->first_name}} {{App\Models\User::find($notify->to)->second_name}}</p>
+                                                                @endif
                                                                 <p class="d-block text-dark"><i class="nav-icon ti ti-eye "></i> {{$notify->seen}}</p>
                                                             </div>
                                                             <h5 class="mb-0 my-2">{{$notify->subject}}</h5>

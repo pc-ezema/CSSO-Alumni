@@ -69,6 +69,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <p class="text-end">
+                                        <a class="text-dark" href="{{route('member.forget.password')}}">
+                                            Forgot Password ?
+                                        </a>
+                                    </p>
                                     <div class="col-md-12 mb-3">
                                         <button type="submit">LogIn</button>
                                     </div>

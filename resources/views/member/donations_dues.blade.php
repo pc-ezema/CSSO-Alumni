@@ -39,7 +39,7 @@
                 </div>
                 <!-- begin row -->
                 <div class="row">
-                    <div class="col-xxl-4 mb-30">
+                    <div class="col-12 mb-30">
                         <div class="card card-statistics h-100 mb-0">
                             <div class="card-header d-flex justify-content-between">
                                 <div class="card-heading">
@@ -55,31 +55,60 @@
                                 </div>
                                 @else
                                 @foreach($donation_dues as $donation_due)
-                                <div class="row active-task m-b-20">
-                                    <div class="col-1">
-                                        <div class="bg-type mt-1">
-                                            <span>{{strtoupper(substr($donation_due->title, 0, 2))}}</span>
+                                    @if($donation_due->user_id == Auth::user()->id)
+                                    <div class="row active-task m-b-20">
+                                        <div class="col-1">
+                                            <div class="bg-type mt-1">
+                                                <span>{{strtoupper(substr($donation_due->title, 0, 2))}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <h5 class="mb-0"><a href="#">{{$donation_due->title}} - ₦{{number_format($donation_due->amount, 2)}}</a></h5>
+                                            <ul class="list-unstyled list-inline">
+                                                <li class="list-inline-item">
+                                                    <small> {{$donation_due->description}}</small>
+                                                </li>
+                                                <li class="list-inline-item">|</li>
+                                                <li class="list-inline-item">
+                                                    <small>{{$donation_due->created_at->toDayDateTimeString()}}</small>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-3">
+                                            <form method="POST" action="{{ route('payment', Crypt::encrypt($donation_due->id)) }}">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary btn-round btn-xs" style="cursor: pointer">Make Payment</button>
+                                            </form>
                                         </div>
                                     </div>
-                                    <div class="col-8">
-                                        <h5 class="mb-0"><a href="#">{{$donation_due->title}} - ₦{{number_format($donation_due->amount, 2)}}</a></h5>
-                                        <ul class="list-unstyled list-inline">
-                                            <li class="list-inline-item">
-                                                <small> {{$donation_due->description}}</small>
-                                            </li>
-                                            <li class="list-inline-item">|</li>
-                                            <li class="list-inline-item">
-                                                <small>{{$donation_due->created_at->toDayDateTimeString()}}</small>
-                                            </li>
-                                        </ul>
+                                    @endif
+                                    @if($donation_due->admin_id)
+                                    <div class="row active-task m-b-20">
+                                        <div class="col-1">
+                                            <div class="bg-type mt-1">
+                                                <span>{{strtoupper(substr($donation_due->title, 0, 2))}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <h5 class="mb-0"><a href="#">{{$donation_due->title}} - ₦{{number_format($donation_due->amount, 2)}}</a></h5>
+                                            <ul class="list-unstyled list-inline">
+                                                <li class="list-inline-item">
+                                                    <small> {{$donation_due->description}}</small>
+                                                </li>
+                                                <li class="list-inline-item">|</li>
+                                                <li class="list-inline-item">
+                                                    <small>{{$donation_due->created_at->toDayDateTimeString()}}</small>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-3">
+                                            <form method="POST" action="{{ route('payment', Crypt::encrypt($donation_due->id)) }}">
+                                                @csrf
+                                                <button type="submit" class="btn btn-primary btn-round btn-xs" style="cursor: pointer">Make Payment</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="col-3">
-                                        <form method="POST" action="{{ route('payment', Crypt::encrypt($donation_due->id)) }}">
-                                            @csrf
-                                            <button type="submit" class="btn btn-primary btn-round btn-xs" style="cursor: pointer">Make Payment</button>
-                                        </form>
-                                    </div>
-                                </div>
+                                    @endif
                                 @endforeach
                                 @endif
                             </div>

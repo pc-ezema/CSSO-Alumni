@@ -241,21 +241,36 @@
                     </div>
                 </button>
             </div>
-            <!-- <div class="col-lg-3">
-                    <button type="button" class="len" data-bs-toggle="modal" data-bs-target="#exampleModal13">
-                        <div class="image-div">
-                            <img src="assets/images/fav.png" alt="">
+            <div class="col-lg-3">
+                <button type="button" class="len" data-bs-toggle="modal" data-bs-target="#exampleModal15">
+                    <div class="image-div">
+                        <img src="{{URL::asset('assets/images/Austin Ibeabuchi.png')}}">
+                    </div>
+                    <div class="diet">
+                        <h4>
+                            Mr. Austin Ibeabuchi
+                        </h4>
+                        <div>
+                            Auditor
                         </div>
-                        <div class="diet">
-                            <h4>
-                                Mr. Austin Ibeabuchi
-                            </h4>
-                            <div>
-                                Auditor
-                            </div>
+                    </div>
+                </button>
+            </div>
+            <div class="col-lg-3">
+                <button type="button" class="len" data-bs-toggle="modal" data-bs-target="#exampleModal16">
+                    <div class="image-div">
+                        <img src="{{URL::asset('assets/images/Maurice Chukwu.jpg')}}">
+                    </div>
+                    <div class="diet">
+                        <h4>
+                            Mr. Maurice Canice Chukwu
+                        </h4>
+                        <div>
+                            Legal Adviser
                         </div>
-                    </button>
-            </div> -->
+                    </div>
+                </button>
+            </div>
         </div>
 </section>
 <!-- EXECUTIVES ENDS-->
@@ -1019,6 +1034,87 @@
                             <p>
                                 CEO Lexcall Nig LTD and RJ Trained Technical Solution, 49 New Mkt Road Onitsha. Secretary Ohanaeze
                                 ndi Igbo Idemili North, VPG ODU(2003- 2007), President Uruowulu 2015-2019
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal-15 -->
+<div class="modal fade" id="exampleModal15" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Our Excos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="model">
+                            <img src="{{URL::asset('assets/images/Austin Ibeabuchi.png')}}" draggable="false">
+                            <h1>
+                                Mr. Austin Ibeabuchi
+                            </h1>
+                            <p>
+                                Auditor
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="layer">
+                            <h2>
+                                Brief Autobiography
+                            </h2>
+                            <p>
+                                BAP(SA) - Business Accountant in Practice.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal-16 -->
+<div class="modal fade" id="exampleModal16" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Our Excos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="model">
+                            <img src="{{URL::asset('assets/images/Maurice Chukwu.jpg')}}" draggable="false">
+                            <h1>
+                                Mr. Maurice Canice Chukwu
+                            </h1>
+                            <p>
+                                Legal Adviser
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="layer">
+                            <h2>
+                                Brief Autobiography
+                            </h2>
+                            <p>
+                                Maurice Chukwu, LLM (With Distinction), (With Best Performance Award, & Best Dissertation Award)
+                                Brunel University London; LLB (Hons.) UNIZIK; BL (Hons.) Nigerian Law School.
+                            </p>
+                            <p>
+                                Maurice is a multiple award-winning British Chevening Scholar with in-depth knowledge, expertise and
+                                experience in the practice of Corporate Governance, Litigation, Legal Advisory, Statutory and Regulatory
+                                Compliance, IP Law, Fintech Law, and IT Law.
+                            </p>
+                            <p>
+                                He is the Founder of Centre for Global Tolerance & Human Rights.
                             </p>
                         </div>
                     </div>

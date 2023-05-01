@@ -96,7 +96,7 @@
                 </div>
                 <div class="copy">
                     <p>
-                        Copyright © 2022 CSSO Alumni Association. All Rights Reserved. <a href="https://greenmousetech.com/"> Site Credit </a>
+                        Copyright © {{ date('Y') }} C.S.S.O ALUMNI ASSOCIATION. All Rights Reserved. <a href="https://greenmousetech.com/"> Site Credit </a>
                     </p>
                 </div>
             </div>

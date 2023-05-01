@@ -16,6 +16,8 @@ class DonationDue extends Model
      */
     
     protected $fillable = [
+        'admin_id',
+        'user_id',
         'title',
         'amount',
         'description',
