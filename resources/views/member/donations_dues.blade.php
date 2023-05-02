@@ -94,7 +94,7 @@
                                                             @csrf
                                                             <div class="form-group">
                                                                 <label for="amount">Amount</label>
-                                                                <input type="number" class="form-control" max="{{$donation_due['balance']}}" id="amount" name="amount">
+                                                                <input type="number" class="form-control" id="amount" name="amount">
                                                             </div>
                                                             <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
                                                         </form>
@@ -150,7 +150,7 @@
                                                             @csrf
                                                             <div class="form-group">
                                                                 <label for="amount">Amount</label>
-                                                                <input type="number" class="form-control" max="{{$donation_due['balance']}}" id="amount" name="amount">
+                                                                <input type="number" class="form-control" id="amount" name="amount">
                                                             </div>
                                                             <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Request</button>
                                                         </form>

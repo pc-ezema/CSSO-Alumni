@@ -129,15 +129,15 @@ class HomeController extends Controller
 
         $payments = Payment::latest()->where('donation_due_id', $donation_dues->id)->where('membership_id', Auth::user()->id)->get();
 
-        $balance = $donation_dues->amount - $payments->sum('amount');
+        // $balance = $donation_dues->amount - $payments->sum('amount');
 
-        if($request->amount > $balance)
-        {
-            return back()->with([
-                'type' => 'danger',
-                'message' => 'Amount entered is greater than remaining balance of:'.number_format($balance, 2)
-            ]);
-        }
+        // if($request->amount > $balance)
+        // {
+        //     return back()->with([
+        //         'type' => 'danger',
+        //         'message' => 'Amount entered is greater than remaining balance of:'.number_format($balance, 2)
+        //     ]);
+        // }
 
         if ($payments->isEmpty()) 
         {
@@ -196,12 +196,12 @@ class HomeController extends Controller
             // foreach ($payments as $payment) {
             //     $amount = $payment->sum('amount');
             // }
-            if ($payments->sum('amount') >= $donation_dues->amount) {
-                return back()->with([
-                    'type' => 'danger',
-                    'message' => 'Payment Conpleted!'
-                ]);
-            } else {
+            // if ($payments->sum('amount') >= $donation_dues->amount) {
+            //     return back()->with([
+            //         'type' => 'danger',
+            //         'message' => 'Payment Conpleted!'
+            //     ]);
+            // } else {
                 $SECRET_KEY = config('app.paystack_secret_key');;
 
                 $url = "https://api.paystack.co/transaction/initialize";
@@ -253,7 +253,7 @@ class HomeController extends Controller
                         'message' => 'Payment failed. Response not ok'
                     ]); 
                 }
-            }
+            // }
         }
     }
 
