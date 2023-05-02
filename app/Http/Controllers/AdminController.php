@@ -103,6 +103,25 @@ class AdminController extends Controller
         ]);
     }
 
+    public function change_member_password($id, Request $request)
+    {
+        $finder = Crypt::decrypt($id);
+
+        $this->validate($request, [
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = User::findorfail($finder);
+        
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return back()->with([
+            'type' => 'success',
+            'message' => 'Member Password Updated Successfully!'
+        ]); 
+    }
+
     public function update_member($id, Request $request) 
     {
         //Find User

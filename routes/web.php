@@ -49,6 +49,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/members', [App\Http\Controllers\AdminController::class, 'members'])->name('admin.members');
     Route::post('/admin/add/member', [App\Http\Controllers\AdminController::class, 'add_member'])->name('admin.add.member');
     Route::get('/admin/view/members', [App\Http\Controllers\AdminController::class, 'view_members'])->name('admin.view.members');
+    Route::post('/admin/change/password/member/{id}', [App\Http\Controllers\AdminController::class, 'change_member_password'])->name('admin.change.member.password');
     Route::post('/admin/update/member/{id}', [App\Http\Controllers\AdminController::class, 'update_member'])->name('admin.update.member');
     Route::get('/admin/delete/member/{id}', [App\Http\Controllers\AdminController::class, 'delete_member'])->name('admin.delete.member');
     Route::get('/admin/payment/request', [App\Http\Controllers\AdminController::class, 'payment_request'])->name('admin.payment.request');

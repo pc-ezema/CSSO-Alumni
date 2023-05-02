@@ -78,6 +78,34 @@
                                                 <td>Password</td>
                                                 <td>{{$member->created_at}}</td>
                                                 <td>
+                                                    <a data-toggle="modal" data-target="#change-password-{{$member->id}}" class="mr-2"><i class="fa fa-key" data-toggle="tooltip" data-placement="top" title="" data-original-title="Change Password"></i></a>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="change-password-{{$member->id}}" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-right" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Change {{$member->membership_id}} Password</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="POST" action="{{ route('admin.change.member.password', Crypt::encrypt($member->id)) }}">
+                                                                        @csrf
+                                                                        <div class="form-group">
+                                                                            <label for="subject">New Password</label>
+                                                                            <input type="password" class="form-control" id="subject" name="new_password">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="subject">Confirm New Password</label>
+                                                                            <input type="password" class="form-control" id="subject" name="new_password_confirmation">
+                                                                        </div>
+                                                                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <a data-toggle="modal" data-target="#send-message-{{$member->id}}" class="mr-2"><i class="fa fa-paper-plane-o" data-toggle="tooltip" data-placement="top" title="" data-original-title="Send Message"></i></a>
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="send-message-{{$member->id}}" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
